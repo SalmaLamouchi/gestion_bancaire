@@ -1,12 +1,18 @@
 // server.js
-const express = require('express');
+
 const mongoose = require('mongoose');
+const express = require('express');
 const app = express();
 const port = 3000;
-
+const path=require('path');
+const http= require('http');
 // Connectez-vous à MongoDB
-mongoose.connect('mongodb://localhost:27017/nom_de_votre_base_de_données', { useNewUrlParser: true, useUnifiedTopology: true });
-
+mongoose.set('strictQuery', false);
+mongoose.connect('mongodb://localhost:27017/gestion-bancaire', {
+// mongoose.connect('mongodb://127.0.0.1:27017/myappdb', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 // Middleware pour traiter les données JSON
 app.use(express.json());
 
