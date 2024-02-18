@@ -5,18 +5,21 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
 const port = process.env.PORT || 3000;
-const http= require('http');
+// const http= require('http');
+const Admin =require('./models/admin');
+const authRoutes=require('./routes/authRoutes');
+clientRoutes= require('./routes/clientRoutes');
+
 const cors = require('cors');
 // Middleware pour parser le corps des requêtes HTTP
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-clientRoutes= require('./routes/clientRoutes');
 // Connectez-vous à MongoDB
 mongoose.set('strictQuery', false);
 mongoose.connect('mongodb://127.0.0.1:27017/gestion-bancaire', {
-// mongoose.connect('mongodb://127.0.0.1:27017/myappdb', {
+// mongoose.connect('mongodb://127.0.0.1:27017/gestion-bancaire', {
  
 // useNewUrlParser: true,
 // useUnifiedTopology: true,
@@ -34,16 +37,27 @@ db.once('open', () => {
 
 
 
-
+// creation d'un admin 
+//   async function seed() {
+//    const email = 'salmakk@gmail.com';
+//    const password = 'salma123';
+//    const admin = new Admin({ email, password });
+//    await admin.save();
+//   console.log('Admin created:', admin);
+//   mongoose.connection.close();
+//  }
+//  seed(); 
 
 
 
 // Middleware pour traiter les données JSON
-app.use(express.json());
 
 // Routes
 // app.use('/api/users', userRoutes);
+app.use('/auth', authRoutes);
 app.use('/admin', clientRoutes);
+app.use(express.json());
+
 // Écoutez le serveur
 app.listen(port, () => {
   console.log(`Serveur en cours d'exécution sur le port ${port}`);

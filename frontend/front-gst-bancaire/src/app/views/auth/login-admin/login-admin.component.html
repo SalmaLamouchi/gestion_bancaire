@@ -1,0 +1,52 @@
+<section class="gradient-custom overflow-hidden">
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+      <div class="row gx-lg-5 align-items-center mb-5">
+        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+          <p class="mb-4 opacity-70">
+            <img src="/assets/user/img/StudentL.svg" alt="Student">
+          </p>
+        </div>
+  
+        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+          <div class="card bg-glass">
+            <div class="card-body px-4 py-5 px-md-5">
+              <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                <div class="row">
+                  <div class="mb-4" style="text-align: center;">
+                    <h4 style="font-weight: bolder; color: #44006b; font-size: larger;">Login</h4>
+                  </div>
+                </div>
+  
+                <div class="form-outline mb-4">
+                  <input type="email" id="form3Example3" formControlName="email" placeholder="Email" class="form-control"
+                    [class.is-invalid]="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+                    required />
+                  <div *ngIf="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)"
+                    class="invalid-feedback">
+                    <div *ngIf="loginForm.get('email')?.errors?.['required']">Email is required.</div>
+                    <div *ngIf="loginForm.get('email')?.errors?.['email']">Email is not valid.</div>
+                  </div>
+                </div>
+  
+                <div class="form-outline mb-4">
+                  <input type="password" id="form3Example4" formControlName="password" placeholder="Password" class="form-control"
+                    [class.is-invalid]="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+                    required />
+                  <div *ngIf="loginForm.get('password')?.invalid && (loginForm.get('password')?.dirty || loginForm.get('password')?.touched)"
+                    class="invalid-feedback">
+                    <div *ngIf="loginForm.get('password')?.errors?.['required']">Password is required.</div>
+                  </div>
+                </div>
+  
+                <button type="submit" class="btn btn-primary btn-block mb-4">Login</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

@@ -52,7 +52,7 @@ exports.getClientById=async(req,res)=>{
         if(!client){
             return res.status(404).json({ success: false, message: 'Client not found' });
         }
-        res.status(200).json({ success: true, data: client });
+        res.status(200).json( client);
     }catch(error){
         res.status(400).json({ success: false, message: 'Failed to fetch client', error: error.message });
     }
@@ -129,3 +129,52 @@ exports.getNonValidClients= async (req, res) => {
       return res.status(500).json({ message: 'Erreur du serveur' });
     }
   };
+
+
+  exports.getProfile = async (req, res) => {
+    try {
+      const client = await Client.findById(req.clientId);
+      if (!client) {
+        return res.status(404).json({ message: 'Client not found' });
+      }
+      res.json(client);
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
+  
+  exports.editProfile = async (req, res) => {
+    try {
+      const client = await Client.findById(req.clientId);
+      if (!client) {
+        return res.status(404).json({ message: 'Client not found' });
+      }
+      if (req.body.nom != null) {
+      client.nom = req.body.nom ;
+      }
+      if (req.body.prenom != null) {
+      client.prenom = req.body.prenom;
+      }
+      if (req.body.telephone != null) {    
+      client.telephone = req.body.telephone;
+      }
+      if (req.body.adresse != null) {
+      client.adresse = req.body.adresse;
+      }
+      if (req.body.niveau != null) {
+      client.niveau = req.body.niveau;
+      }
+      if (req.file != null) {
+      client.photo = req.file.filename ;
+      }
+      const updatedClient = await client.save();
+      const imageUrl = req.file ? req.file.filename : client.photo;
+      res.json({ ...updatedClient.toObject(), imageUrl });
+    } catch (error) {
+      //console.error(error);
+      res.status(400).json({ message: error.message });
+      res.status(500).json({ message: 'Server error' });
+    }
+  };
+  

@@ -1,0 +1,75 @@
+<section style="margin-top: 70px">
+    <div class="row" *ngIf="client">
+      <div class="col-lg-4">
+        <div class="card mb-4">
+          <div class="card-body text-center" style="height: 275.2px;">
+          <img   alt="avatar"
+          class="rounded-circle img-fluid"
+          style="width: 150px;height:130px;border-radius: 100%;" [src]="client.photo ? 'http://localhost:3000/uploads/' + client.photo : '../../../../../assets/client/images/1.jpg'" class="img-fluid" alt="" />
+  
+  
+            <div class="d-flex justify-content-center mb-2">
+              <button
+                class="btn btn-primary"
+                (click)="toggleSuspendAccount(client._id)"
+              >
+                {{ client.estSuspendu ? "Réactiver" : "Suspendre" }}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-8">
+        <div class="card mb-4">
+          <div class="card-body" >
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Full Name</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ client.nom }}  {{client.prenom}}</p>
+                <!-- <p class="text-muted mb-0">{{ client.estSuspendu}} </p> -->
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Email</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{ client.email }}</p>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Phone</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{client.telephone}}</p>
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Level</p>
+              </div>
+              <div class="col-sm-9">
+                <!-- <p class="text-muted mb-0">{{client.niveau}}</p> -->
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <p class="mb-0">Address</p>
+              </div>
+              <div class="col-sm-9">
+                <p class="text-muted mb-0">{{client.adresse}}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
