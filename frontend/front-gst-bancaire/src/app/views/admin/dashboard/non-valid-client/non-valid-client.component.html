@@ -1,0 +1,30 @@
+<div style="overflow: hidden;">
+    <table class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Last name</th>
+          <th>First name</th>
+          <th>Email</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let client of clients">
+          <td>{{ client._id }}</td>
+          <td>{{ client.nom }}</td>
+          <td>{{ client.prenom }}</td>
+          <td>{{ client.email }}</td>
+          <td style="justify-content: center ;display: flex;">
+            <button class="btn btn-primary" (click)="validateClient(client)">
+              Validate
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <!-- <mat-paginator [length]="students.length" [pageSize]="currentPageSize" [pageSizeOptions]="pageSizeOptions"
+      (page)="onPageChange($event)" [showFirstLastButtons]="true"></mat-paginator> -->
+  </div>
+  

@@ -82,7 +82,11 @@ export class ClientService {
     return this.http.put<Client>(url, {});
   }
 
-
+  getNonValidStudents(): Observable<Client[]> {
+    const url = `${this.baseUrl}/invalid`;
+    return this.http.get<Client[]>(url);
+  }
+ 
 
 
   getProfile(): Observable<any> {

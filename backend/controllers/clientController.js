@@ -162,9 +162,6 @@ exports.getNonValidClients= async (req, res) => {
       if (req.body.adresse != null) {
       client.adresse = req.body.adresse;
       }
-      if (req.body.niveau != null) {
-      client.niveau = req.body.niveau;
-      }
       if (req.file != null) {
       client.photo = req.file.filename ;
       }

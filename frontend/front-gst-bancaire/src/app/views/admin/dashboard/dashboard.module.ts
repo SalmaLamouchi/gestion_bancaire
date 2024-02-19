@@ -21,6 +21,7 @@ import { AdminClientDetailComponent } from './admin-client-detail/admin-client-d
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { ChangePwdComponent } from './change-pwd/change-pwd.component';
+import { NonValidClientComponent } from './non-valid-client/non-valid-client.component';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 
 
@@ -30,7 +31,8 @@ import { ChangePwdComponent } from './change-pwd/change-pwd.component';
     AdminListClientsComponent,
     AdminAddClientComponent,
     AdminClientDetailComponent,
-    ChangePwdComponent
+    ChangePwdComponent,
+    NonValidClientComponent
     // LoginAdminComponent
   ],
   imports: [
