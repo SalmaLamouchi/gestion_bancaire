@@ -1,13 +1,13 @@
-<div class="container">
+<div class="container " style="background-color:white ;margin-left:100px">
     <div class="row justify-content-center">
-      <div class="col-md-6">
+      <div class="col-md-12" >
      
         <div class="container">
-          <h3 style="text-align: center;">Change Your Password</h3>
+          <p style="text-align: center;font-weight:bold">Changer mot de passe</p>
           <br>
           <form [formGroup]="passwordForm" (ngSubmit)="onSubmit()">
             <div class="form-group">
-              <label for="email">E-mail Address:</label>
+              <label for="email">E-mail:</label>
               <input type="email" formControlName="email" class="form-control" required>
               <div *ngIf="passwordForm.get('email')?.invalid && (passwordForm.get('email')?.dirty || passwordForm.get('email')?.touched)" class="alert alert-danger">
                 <div *ngIf="passwordForm.get('email')?.errors?.['required']">L'adresse e-mail est requise.</div>
@@ -15,20 +15,20 @@
               </div>
             </div>
             <div class="form-group">
-              <label for="currentPassword">Current Password :</label>
+              <label for="currentPassword"> mot de passe actuel :</label>
               <input type="password" formControlName="currentPassword" class="form-control" required>
               <div *ngIf="passwordForm.get('currentPassword')?.invalid && (passwordForm.get('currentPassword')?.dirty || passwordForm.get('currentPassword')?.touched)" class="alert alert-danger">
                 Current password is required.
               </div>
             </div>
             <div class="form-group">
-              <label for="newPassword">New Password :</label>
+              <label for="newPassword">nouveau mot de passe  :</label>
               <input type="password" formControlName="newPassword" class="form-control" required>
               <div *ngIf="passwordForm.get('newPassword')?.invalid && (passwordForm.get('newPassword')?.dirty || passwordForm.get('newPassword')?.touched)" class="alert alert-danger">
                 The new password is required.              </div>
             </div>
             <div class="form-group">
-              <label for="confirmPassword">Confirm the new password :</label>
+              <label for="confirmPassword">Confirmer mot de passe :</label>
               <input type="password" formControlName="confirmPassword" class="form-control" required>
               <div *ngIf="passwordForm.get('confirmPassword')?.invalid && (passwordForm.get('confirmPassword')?.dirty || passwordForm.get('confirmPassword')?.touched)" class="alert alert-danger">
                 Confirmation of the new password is required.              </div>
@@ -46,3 +46,41 @@
         
       </div>
 </div>
+
+
+
+
+
+<!-- 
+
+
+<div class="tab-pane fade pt-3" >
+    <form>
+
+      <div class="row mb-3">
+        <label for="currentPassword" class="col-md-4 col-lg-3 col-form-label">Current Password</label>
+        <div class="col-md-8 col-lg-9">
+          <input name="password" type="password" class="form-control" id="currentPassword">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="newPassword" class="col-md-4 col-lg-3 col-form-label">New Password</label>
+        <div class="col-md-8 col-lg-9">
+          <input name="newpassword" type="password" class="form-control" id="newPassword">
+        </div>
+      </div>
+
+      <div class="row mb-3">
+        <label for="renewPassword" class="col-md-4 col-lg-3 col-form-label">Re-enter New Password</label>
+        <div class="col-md-8 col-lg-9">
+          <input name="renewpassword" type="password" class="form-control" id="renewPassword">
+        </div>
+      </div>
+
+      <div class="text-center">
+        <button type="submit" class="btn btn-primary">Change Password</button>
+      </div>
+    </form>
+
+  </div> -->

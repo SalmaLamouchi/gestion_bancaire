@@ -9,6 +9,10 @@ const port = process.env.PORT || 3000;
 const Admin =require('./models/admin');
 const authRoutes=require('./routes/authRoutes');
 clientRoutes= require('./routes/clientRoutes');
+transactionRoutes=require('./routes/transactionRoutes');
+profilRoutes=require('./routes/profilRoutes');
+accRoutes=require('./routes/accountRoutes');
+const notificationRoute=require('./routes/notificationRoutes');
 
 const cors = require('cors');
 // Middleware pour parser le corps des requêtes HTTP
@@ -55,7 +59,10 @@ db.once('open', () => {
 // Routes
 // app.use('/api/users', userRoutes);
 app.use('/auth', authRoutes);
-app.use('/admin', clientRoutes);
+app.use('/admin', clientRoutes,notificationRoute);
+app.use('/transaction', transactionRoutes);
+app.use('/client', profilRoutes);
+app.use('/acc',accRoutes);
 app.use(express.json());
 
 // Écoutez le serveur

@@ -1,0 +1,58 @@
+<section class="gradient-custom overflow-hidden">
+
+    <div class="container px-4 py-5 px-md-5 text-center text-lg-start my-5">
+      <div class="row gx-lg-5 align-items-center mb-5">
+        <div class="col-lg-6 mb-5 mb-lg-0" style="z-index: 10">
+          <p class="mb-4 opacity-70" style="color: hsl(218, 81%, 85%)">
+            <img src="/assets/user/img/StudentL.svg">
+          </p>
+        </div>
+  
+        <div class="col-lg-6 mb-5 mb-lg-0 position-relative">
+          <div id="radius-shape-1" class="position-absolute rounded-circle shadow-5-strong"></div>
+          <div id="radius-shape-2" class="position-absolute shadow-5-strong"></div>
+  
+          <div class="card bg-glass">
+            <div class="card-body px-4 py-5 px-md-5">
+              <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="nom">Nom:</label>
+                  <input type="text" id="nom" formControlName="nom" class="form-control">
+                  <div *ngIf="form.get('nom')?.invalid && (form.get('nom')?.dirty || form.get('nom')?.touched)" class="alert alert-danger">
+                    <div *ngIf="form.get('nom')?.errors?.['required']">Nom est requis</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="prenom">Prénom:</label>
+                  <input type="text" id="prenom" formControlName="prenom" class="form-control">
+                  <div *ngIf="form.get('prenom')?.invalid && (form.get('prenom')?.dirty || form.get('prenom')?.touched)" class="alert alert-danger">
+                    <div *ngIf="form.get('prenom')?.errors?.['required']">Prénom est requis</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" formControlName="email" class="form-control">
+                  <div *ngIf="form.get('email')?.invalid && (form.get('email')?.dirty || form.get('email')?.touched)" class="alert alert-danger">
+                    <div *ngIf="form.get('email')?.errors?.['required']">Email est requis</div>
+                    <div *ngIf="form.get('email')?.errors?.['email']">Format email invalide</div>
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="motDePasse">Mot de passe:</label>
+                  <input type="password" id="motDePasse" formControlName="motDePasse" class="form-control">
+                  <div *ngIf="form.get('motDePasse')?.invalid && (form.get('motDePasse')?.dirty || form.get('motDePasse')?.touched)" class="alert alert-danger">
+                    <div *ngIf="form.get('motDePasse')?.errors?.['required']">Mot de passe est requis</div>
+                    <div *ngIf="form.get('motDePasse')?.errors?.['minlength']">Mot de passe doit contenir au moins 8 caractères</div>
+                  </div>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block mb-4" [disabled]="form.invalid">
+                  S'inscrire
+                </button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  

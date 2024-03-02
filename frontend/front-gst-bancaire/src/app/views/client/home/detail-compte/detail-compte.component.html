@@ -1,0 +1,35 @@
+<div class="container" style="margin-top: 30px;height: 500px;">
+    <div class="row justify-content-center" style="height: 300px;">
+      <div class="col-md-6">
+        <div class="card mt-5">
+          <div class="card-header text-black" >
+            <h2 class="text-center">Account Details</h2>
+          </div>
+          <div class="card-body">
+            <div *ngIf="account; else noAccount">
+              <p><strong>Account Number:</strong> {{ account.accountNumber }}</p>
+              <p><strong>Balance  <i class="bi bi-cash-coin"></i>:</strong> {{ account.balance }}</p>
+              <p><strong>Owner ID:</strong> {{ account.ownerId }}</p>
+            </div>
+            <ng-template #noAccount>
+              <p>No account details available.</p>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+
+
+   <!-- profil.component.html -->
+
+<!-- <div *ngIf="account">
+    <h2>Account Details</h2>
+    <p>Account Number: {{ account.accountNumber }}</p>
+    <p>Balance: {{ account.balance }}</p>
+  </div>
+  <div *ngIf="error">
+    <p>{{ error }}</p>
+  </div> -->
+  

@@ -23,9 +23,6 @@ router.get('/clients/',authController.isAuthenticated,protectAdmin,clientControl
 router.get('/nonvalidclients/',authController.isAuthenticated, protectAdmin,clientController.getNonValidClients)
 router.put('/suspend/:id',clientController.toggleSuspendAccount);
 router.get('/clients/:id',authController.isAuthenticated, protectAdmin,clientController.getClientById);
-router.put('/clients/:id',authController.isAuthenticated, protectAdmin,clientController.updateClient);
 router.delete('/clients/:id',authController.isAuthenticated, protectAdmin,clientController.deleteClient);
-router.get('/profile', clientController.getProfile);
-router.put('/profile/edit',upload.single('photo'), clientController.editProfile);
 
 module.exports = router;

@@ -39,7 +39,7 @@ export class NonValidClientComponent implements OnInit {
 
   validateClient(client: Client) {
     Swal.fire({
-      title: 'Êtes-vous sûr de vouloir valider cet étudiant ?',
+      title: 'Êtes-vous sûr de vouloir valider cet client ?',
       icon: 'warning',
       showCancelButton: true,
       confirmButtonText: 'Valider',

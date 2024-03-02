@@ -1,0 +1,35 @@
+<div class="col-lg-8" style="margin-top: 100px;margin-left: 200px;margin-bottom: 250px;">
+  
+<form [formGroup]="virementForm" (ngSubmit)="effectuerVirement()">
+    <mat-stepper orientation="vertical" #stepper>
+      <mat-step >
+        <ng-template matStepLabel>Informations sur le virement</ng-template>
+        <mat-form-field>
+          <mat-label>Compte Source</mat-label>
+          <input matInput placeholder="Compte Source" formControlName="compteSourceId" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Compte Destination</mat-label>
+          <input matInput placeholder="Compte Destination" formControlName="compteDestinationId" required>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Montant</mat-label>
+          <input matInput placeholder="Montant" formControlName="montant" required>
+        </mat-form-field>
+        <div>
+          <button mat-button matStepperNext>Next</button>
+        </div>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Confirmation</ng-template>
+        <p>Veuillez vérifier les informations avant de soumettre le virement.</p>
+        <div>
+          <button mat-button type="submit">Effectuer le virement</button>
+          <button mat-button matStepperPrevious>Back</button>
+          <button mat-button (click)="stepper.reset()">Reset</button>
+        </div>
+      </mat-step>
+    </mat-stepper>
+  </form>
+  <!-- <p>{{ message }}</p> -->
+</div>

@@ -1,14 +1,17 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Client } from 'src/app/models/clients'; // Assuming you have a Client model
 import { AuthService } from 'src/app/services/auth.service';
 import { ClientService } from 'src/app/services/clients.service'; // Assuming you have a ClientService
-
+// import {MatStepperModule} from '@angular/material/stepper';
+// import { MatFormFieldModule } from '@angular/material/form-field';
+// import { MatInputModule } from '@angular/material/input';
+// import { MatButtonModule } from '@angular/material/button';
 @Component({
   selector: 'app-admin-add-client',
   templateUrl: './admin-add-client.component.html',
-  styleUrls: ['./admin-add-client.component.css']
+  styleUrls: ['./admin-add-client.component.css'],
 })
 export class AdminAddClientComponent implements OnInit {
   isLinear = true;
@@ -37,8 +40,8 @@ export class AdminAddClientComponent implements OnInit {
 
   ngOnInit(): void {
     this.firstFormGroup = this._formBuilder.group({
-      nomCtrl: ['', Validators.required],
-      prenomCtrl: ['', Validators.required]
+      nomCtrl: [''],
+      prenomCtrl: ['']
     });
 
     this.secondFormGroup = this._formBuilder.group({

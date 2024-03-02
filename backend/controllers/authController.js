@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const Client = require('../models/client');
 const saltRounds = 12;
-
+const Notification=require('../models/notification');
 
 exports.loginAdmin =async (req, res, next) => {
     const { email, password } = req.body;
@@ -68,6 +68,39 @@ exports.loginAdmin =async (req, res, next) => {
 
 
 
+exports.isAuthenticatedClient = async (req, res, next) => {
+  try {
+    // Check if the Authorization header is present and starts with "Bearer"
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: 'Unauthorized access' });
+    }
+
+    // Extract the token from the Authorization header
+    const token = authHeader.split(' ')[1];
+
+    // Verify and decode the token
+    const decodedToken = jwt.verify(token, process.env.CLIENT_SECRET);
+
+    // Retrieve the ID of the client from the decoded token
+    const clientId = decodedToken.id;
+
+    // Search for the client in the database
+    const client = await Client.findById(clientId);
+
+    // Check if the client exists
+    if (!client) {
+      return res.status(401).json({ message: 'Unauthorized access' });
+    }
+
+    // If the client is found and valid, attach it to the request object and proceed
+    req.client = client;
+    next();
+  } catch (error) {
+    console.error(error);
+    return res.status(401).json({ message: 'Unauthorized access' });
+  }
+};
 // changer admin password
 exports.changeAdminPassword = (req, res) => {
   const { email, currentPassword, newPassword } = req.body;
@@ -126,16 +159,16 @@ exports.signupClient = async (req, res) => {
     await newUser.save();
 
     // Get admin account and create a notification for the new client signup
-    // const admin = await Admin.findOne();
-    // const newNotification = new Notification({ 
-    //   receiverId: admin._id,
-    //   senderId: newUser._id,
-    //   message: `${email} want to valid his account `
-    // });
-    // await newNotification.save();
+    const admin = await Admin.findOne();
+    const newNotification = new Notification({ 
+      receiverId: admin._id,
+      senderId: newUser._id,
+      message: `${email} want to valid his account `
+    });
+    await newNotification.save();
 
-    // admin.notifications.push(newNotification);
-    // await admin.save();
+    admin.notifications.push(newNotification);
+    await admin.save();
 
     return res.status(201).json({ message: 'User created successfully' });
   } catch (error) {
@@ -151,43 +184,34 @@ exports.loginClient = async (req, res) => {
     const { email, motDePasse } = req.body;
 
     // Find user with given email
-    const user = await User.findOne({ email });
-    // console.log(user);
-    // console.log(user.estValide);
-    // console.log(typeof(user.estValide));
+    const user = await Client.findOne({ email });
     if (!user) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
     // Check if password is correct
-    const isMatch = await bcrypt.compare(motDePasse, user.motDePasse);
-    // console.log(isMatch);
+    const isMatch = await user.comparePassword(motDePasse);
     if (!isMatch) {
       return res.status(401).json({ message: 'Invalid email or password' });
     }
 
      // Check if user is validated
      if (!user.estValide) {
-     // console.log("hi");
       return res.status(401).json({ message: 'you are not authorized yet ' });
     }
     if (user.estSuspendu) {
-      // console.log("hi");
       return res.status(401).json({ message: 'your account has been suspended by an administrator ! ' });
     }
     
     // Generate JWT token for user
-    const token = jwt.sign({ userId: user._id }, process.env.CLIENT_JWT_SECRET);
-    console.log(token);
+    const token = jwt.sign({ id: user._id }, process.env.CLIENT_SECRET);
     // Return token and user data
-    return res.status(200).json({ token, user: { userId:user._id,nom: user.nom, prenom: user.prenom, email: user.email ,estValide: user.estValide ,estSuspendu:user.estSuspendu} });
+    return res.status(200).json({ token, client: { clientId:user._id,nom: user.nom, prenom: user.prenom, email: user.email ,estValide: user.estValide ,estSuspendu:user.estSuspendu} });
   } catch (error) {
     console.error(error);
     return res.status(500).json({ message: 'Internal server error' });
   }
 };
-
-
 
 
 exports.logoutUser = (req, res) => {

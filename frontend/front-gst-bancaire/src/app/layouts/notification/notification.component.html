@@ -1,0 +1,8 @@
+<div style="width: 400px;">
+  <li class="notification-item" *ngFor="let notification of notifications">
+    <a  style="cursor: pointer;"routerLink="/admin/dash/nonvalid">{{ notification.message }}</a>
+    <hr class="dropdown-divider">
+  </li>
+  <hr class="dropdown-divider">
+</div>
+<!-- <a href="#"><span class="badge rounded-pill bg-primary p-2 ms-2">View all</span></a> -->

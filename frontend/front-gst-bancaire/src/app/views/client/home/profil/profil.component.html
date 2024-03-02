@@ -1,0 +1,34 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card" style="height: 400px;">
+          <div class="card-header">
+            <h2 class="text-center">Profile Details</h2>
+          </div>
+          <div class="card-body">
+            <div *ngIf="profile" class="row">
+              <div class="col-md-4">
+                <img [src]="profile.photo ? 'http://localhost:3000/uploads/' + profile.photo : '../../../../../assets/client/images/1.jpg'" alt="avatar" class="rounded-circle img-fluid" style="width: 150px; height: 150px;">
+              </div>
+              <div class="col-md-8">
+                <p><strong>Nom:</strong> {{ profile.nom }}</p>
+                <p><strong>Prenom:</strong> {{ profile.prenom }}</p>
+                <p><strong>Email:</strong> {{ profile.email }}</p>
+                <!-- <p><strong>Email:</strong> {{ profile.email }}</p> -->
+                <!-- Add more profile details here -->
+                <button class="btn btn-primary" [routerLink]="['/profil/edit']">Edit</button>
+              </div>
+            </div>
+            <ng-template #loading>
+              <div class="text-center">
+                <div class="spinner-border text-primary" role="status">
+                  <span class="visually-hidden">Loading...</span>
+                </div>
+              </div>
+            </ng-template>
+            <p *ngIf="error" class="text-danger">{{ error }}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

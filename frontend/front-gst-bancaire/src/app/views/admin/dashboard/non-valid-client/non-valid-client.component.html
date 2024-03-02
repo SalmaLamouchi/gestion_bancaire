@@ -16,9 +16,18 @@
           <td>{{ client.prenom }}</td>
           <td>{{ client.email }}</td>
           <td style="justify-content: center ;display: flex;">
-            <button class="btn btn-primary" (click)="validateClient(client)">
-              Validate
-            </button>
+          
+
+            <div class="btn-group" role="group" aria-label="Basic example">
+                <!-- <button [routerLink]="['/admin/dash/clients', client._id]" type="button"
+                  class="btn btn-outline-secondary">
+                  <i class="bi bi-chat-right-quote-fill"></i>
+                </button> -->
+                <button type="button"
+                class="btn btn-outline-secondary" (click)="validateClient(client)">
+                <i class="bi bi-check-circle-fill"></i>
+                </button>
+              </div>
           </td>
         </tr>
       </tbody>
