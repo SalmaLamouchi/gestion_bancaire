@@ -101,10 +101,10 @@ export class ClientService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.put<any>(`${this.url}/clients/${clientId}`, clientData, { headers });
+    return this.http.put<any>(`${this.url}/profile/${clientId}`, clientData, { headers });
   }
-
-
+  
+  
   uploadImage(photo: File): Observable<any> {
     const formData = new FormData();
     formData.append('photo', photo);
@@ -120,5 +120,18 @@ export class ClientService {
     
     return this.http.get<any>(`${this.AccUrl}/account/${clientId}`, { headers });
   }
+
+  createAccountForClient(accountData: any): Observable<any> {
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    });
+
+    return this.http.post<any>(`${this.AccUrl}/create-account`, accountData, { headers });
+  }
+
+
+
+
 
 }

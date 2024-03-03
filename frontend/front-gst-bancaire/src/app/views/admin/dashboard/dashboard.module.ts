@@ -23,6 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ChangePwdComponent } from './change-pwd/change-pwd.component';
 import { NonValidClientComponent } from './non-valid-client/non-valid-client.component';
 import { NotificationComponent } from '../../../layouts/notification/notification.component';
+import { CreateAccountComponent } from './create-account/create-account.component';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 // import { MatStepper } from '@angular/material/stepper';
 
@@ -34,6 +35,7 @@ import { NotificationComponent } from '../../../layouts/notification/notificatio
     AdminClientDetailComponent,
     ChangePwdComponent,
     NonValidClientComponent,
+    CreateAccountComponent,
     // NotificationComponent
     // LoginAdminComponent
   ],

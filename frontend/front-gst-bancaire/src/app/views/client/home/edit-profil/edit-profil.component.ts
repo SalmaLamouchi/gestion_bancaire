@@ -39,16 +39,21 @@ export class EditProfilComponent implements OnInit {
       }
     );
   }
-
   onSubmit(): void {
-    this.clientService.updateClient(this.client._id, this.client).subscribe(
-      data => {
-        console.log(data);
-        this.router.navigate(['/profil']);
-      },
-      error => {
-        console.log(error);
-      }
-    );
+    if (this.id) { // Vérifiez si l'ID est défini
+      this.clientService.updateClient(this.id, this.client).subscribe(
+        data => {
+          console.log(data);
+          this.router.navigate(['/profil']);
+        },
+        error => {
+          console.log(error);
+        }
+      );
+    } else {
+      console.error("Client ID is undefined");
+    }
   }
+  
+  
 }

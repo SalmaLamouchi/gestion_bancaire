@@ -6,5 +6,5 @@ const authController = require('../controllers/authController');
 
 
 router.get('/profile/:clientId', authController.isAuthenticatedClient,clientController.getProfile);
-router.put('/profile/:id',authController.isAuthenticated, protectAdmin,clientController.updateProfile);
+router.put('/profile/:clientId', authController.isAuthenticatedClient,clientController.updateProfile);
 module.exports = router;

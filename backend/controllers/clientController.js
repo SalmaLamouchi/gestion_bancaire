@@ -152,58 +152,55 @@ exports.getNonValidClients= async (req, res) => {
   
   
  // Dans votre fichier de contrôleur (par exemple, profileController.js)
-exports.updateProfile = (req, res) => {
-  const clientId = req.params.clientId; // Récupérer l'ID du client depuis les paramètres de la requête
-  const updatedProfile = req.body; // Récupérer les données mises à jour du profil depuis le corps de la requête
-  
-  // Logique pour mettre à jour le profil dans la base de données
-  // Exemple d'utilisation de Mongoose pour mettre à jour le profil
-  Client.findByIdAndUpdate(clientId, updatedProfile, { new: true })
-    .then(updatedClient => {
-      if (!updatedClient) {
-        return res.status(404).json({ message: 'Client not found' });
-      }
-      res.status(200).json({ client: updatedClient });
-    })
-    .catch(err => {
-      console.error('Error updating profile:', err);
-      res.status(500).json({ message: 'Internal server error' });
-    });
-};
+//  exports.updateProfile = async (req, res) => {
+//   const clientId = req.params.clientId;
+//   const updatedProfile = req.body;
 
-  
-  
-//   exports.updateProfile = (req, res) => {
-//     // Extract the client ID from the request
-//     const clientId = req.clientId;
-
-//     // Find the client by ID
-//     Client.findById(clientId)
-//         .then(client => {
-//             if (!client) {
-//                 return res.status(404).json({ message: 'Client not found' });
-//             }
-//             // Update the client's profile with the provided information
-//             if (req.body.nom) {
-//                 client.nom = req.body.nom;
-//             }
-//             if (req.body.prenom) {
-//                 client.prenom = req.body.prenom;
-//             }
-//             // Add more fields as needed
-
-//             // Save the updated client profile
-//             client.save()
-//                 .then(updatedClient => {
-//                     res.status(200).json({ message: 'Profile updated successfully', client: updatedClient });
-//                 })
-//                 .catch(err => {
-//                     console.error('Error updating profile:', err);
-//                     res.status(500).json({ message: 'Internal server error' });
-//                 });
-//         })
-//         .catch(err => {
-//             console.error('Error fetching client profile:', err);
-//             res.status(500).json({ message: 'Internal server error' });
-//         });
+//   try {
+//     const updatedClient = await Client.findByIdAndUpdate(clientId, updatedProfile, { new: true });
+//     if (!updatedClient) {
+//       return res.status(404).json({ message: 'Client not found' });
+//     }
+//     res.status(200).json({ client: updatedClient });
+//   } catch (error) {
+//     console.error('Error updating profile:', error);
+//     res.status(500).json({ message: 'Internal server error' });
+//   }
 // };
+
+  
+  
+  exports.updateProfile = (req, res) => {
+    // Extract the client ID from the request
+    const clientId = req.clientId;
+
+    // Find the client by ID
+    Client.findById(clientId)
+        .then(client => {
+            if (!client) {
+                return res.status(404).json({ message: 'Client not found' });
+            }
+            // Update the client's profile with the provided information
+            if (req.body.nom) {
+                client.nom = req.body.nom;
+            }
+            if (req.body.prenom) {
+                client.prenom = req.body.prenom;
+            }
+            // Add more fields as needed
+
+            // Save the updated client profile
+            client.save()
+                .then(updatedClient => {
+                    res.status(200).json({ message: 'Profile updated successfully', client: updatedClient });
+                })
+                .catch(err => {
+                    console.error('Error updating profile:', err);
+                    res.status(500).json({ message: 'Internal server error' });
+                });
+        })
+        .catch(err => {
+            console.error('Error fetching client profile:', err);
+            res.status(500).json({ message: 'Internal server error' });
+        });
+};
