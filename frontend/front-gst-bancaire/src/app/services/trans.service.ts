@@ -19,6 +19,15 @@ export class TransService {
       compteDestinationId,
       montant
     };
+    
     return this.http.post<any>(url, body);
   }
+ 
+  getTransactionsByAccountId(accountId: string): Observable<any> {
+    return this.http.get<any>(`${this.API_BASE_URL}/tran/${accountId}`);
+  }
+
+
+
 }
+

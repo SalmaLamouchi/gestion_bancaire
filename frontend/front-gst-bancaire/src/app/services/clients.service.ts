@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, catchError, throwError } from 'rxjs';
 import { Client } from '../models/clients';
+import { Account } from '../models/account';
 
 @Injectable({
   providedIn: 'root'
@@ -57,6 +58,19 @@ export class ClientService {
   //   return this.http.put<Client>(`${this.baseUrl}/clients/${id}`, client, httpOptions);
   // }
 
+
+
+
+
+  updateProfile(id: string, client: Client): Observable<Client> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    };
+    return this.http.put<Client>(`${this.url}/profile/${id}`, client, httpOptions);
+  }
+  
   // Méthode pour supprimer un client avec autorisation
   deleteClient(id: string): Observable<any> {
     const httpOptions = {
@@ -82,12 +96,6 @@ export class ClientService {
     return this.http.put<Client>(url, {});
   }
 
-  getNonValidStudents(): Observable<Client[]> {
-    const url = `${this.baseUrl}/invalid`;
-    return this.http.get<Client[]>(url);
-  }
- 
-
 
   getProfile(clientId: string): Observable<any> {
     const headers = new HttpHeaders({
@@ -101,10 +109,16 @@ export class ClientService {
     const headers = new HttpHeaders({
       Authorization: `Bearer ${localStorage.getItem('token')}`
     });
-    return this.http.put<any>(`${this.url}/profile/${clientId}`, clientData, { headers });
+    return this.http.put<any>(`${this.baseUrl}/clients/${clientId}`, clientData, { headers });
   }
   
   
+  // updateClient(clientId: string, clientData: any): Observable<any> {
+  //   const headers = new HttpHeaders({
+  //     Authorization: `Bearer ${localStorage.getItem('token')}`
+  //   });
+  //   return this.http.put<any>(`${this.url}/profile/${clientId}`, clientData, { headers });
+  // }
   uploadImage(photo: File): Observable<any> {
     const formData = new FormData();
     formData.append('photo', photo);
@@ -121,16 +135,33 @@ export class ClientService {
     return this.http.get<any>(`${this.AccUrl}/account/${clientId}`, { headers });
   }
 
-  createAccountForClient(accountData: any): Observable<any> {
+  updateAccount(accountId: string, account: Account): Observable<Account> {
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token')
+      })
+    };
+    return this.http.put<Account>(`${this.AccUrl}/account/${accountId}`, account, httpOptions);
+  }
+  
+  getAccountsByClientId(clientId: string): Observable<any> {
+    const headers = new HttpHeaders({
+      Authorization: `Bearer ${localStorage.getItem('token')}`
+    });
+    return this.http.get<any>(`${this.AccUrl}/get-acc/${clientId}`, { headers });
+  }
+  
+  
+
+  createAccount(accountData: any): Observable<any> {
     const headers = new HttpHeaders({
       'Content-Type': 'application/json',
       Authorization: `Bearer ${localStorage.getItem('token')}`
     });
-
+  
     return this.http.post<any>(`${this.AccUrl}/create-account`, accountData, { headers });
   }
-
-
 
 
 

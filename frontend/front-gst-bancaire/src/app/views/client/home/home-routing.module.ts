@@ -9,6 +9,7 @@ import { DetailCompteComponent } from './detail-compte/detail-compte.component';
 import { ProfilComponent } from './profil/profil.component';
 import { VirementComponent } from './virement/virement.component';
 import { EditProfilComponent } from './edit-profil/edit-profil.component';
+import { TransactionComponent } from './transaction/transaction.component';
 // import { EditProfilComponent } from './;
 
 const routes: Routes = [
@@ -19,7 +20,8 @@ const routes: Routes = [
   {path:'virement',component:VirementComponent},
   {path:'detail-compte',component:DetailCompteComponent},
   {path:'profil',component:ProfilComponent},
-  {path:'profil/edit',component:EditProfilComponent}
+  {path:'profil/edit',component:EditProfilComponent},
+  {path:'transactions',component:TransactionComponent}
 ];
 
 @NgModule({

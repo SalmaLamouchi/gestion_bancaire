@@ -9,6 +9,8 @@ import { ChangePwdComponent } from './change-pwd/change-pwd.component';
 import { NonValidClientComponent } from './non-valid-client/non-valid-client.component';
 import { NotificationComponent } from '../../../layouts/notification/notification.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { DetailAccComponent } from './detail-acc/detail-acc.component';
+import { UpdateAccountComponent } from './update-account/update-account.component';
 // import { LoginAdminComponent } from './login-admin/login-admin.component';
 
 const routes: Routes = [
@@ -18,7 +20,9 @@ const routes: Routes = [
 {path:'clients/:id',component:AdminClientDetailComponent},
 {path:'changerPwd',component:ChangePwdComponent},
 {path:'nonvalid',component:NonValidClientComponent},
-{path:'create-account',component:CreateAccountComponent}
+{path:'create-account',component:CreateAccountComponent},
+{path:'detail-acc/:clientId',component:DetailAccComponent},
+{path:'edit-acc',component:UpdateAccountComponent}
 ];
 
 @NgModule({

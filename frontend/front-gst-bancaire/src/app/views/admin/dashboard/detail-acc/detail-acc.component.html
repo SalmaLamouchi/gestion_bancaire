@@ -1,0 +1,40 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <div class="card">
+        <div class="card-header">
+          <!-- <button class="btn btn-primary" [routerLink]="['/admin/dash/edit-acc']" >Update</button> -->
+          <h2 class="text-center">Accounts</h2>
+        </div>
+        <div class="card-body">
+          <div *ngIf="accounts && accounts.length > 0">
+            <div class="table-responsive">
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th>Account Number</th>
+                    <th>Balance</th>
+                    <!-- Add more table headers if needed -->
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr *ngFor="let account of accounts">
+                    <td>{{ account.accountNumber }}</td>
+                    <td>{{ account.balance }}</td>
+                    <!-- Add more table cells for additional account details -->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div *ngIf="accounts && accounts.length === 0">
+            <p>No accounts found for this client.</p>
+          </div>
+          <div *ngIf="!accounts">
+            <p>Loading...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

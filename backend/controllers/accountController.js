@@ -54,6 +54,23 @@ exports.getAccount = (req, res) => {
     });
 };
 
+exports.getAccountsByClientId = (req, res) => {
+  const clientId = req.params.clientId; // Get the client ID from request parameters
+
+  // Find all accounts associated with the client in the database using clientId
+  Account.find({ ownerId: clientId })
+    .then(accounts => {
+      if (!accounts || accounts.length === 0) {
+        return res.status(404).json({ message: 'No accounts found for this client' });
+      }
+      // Return the list of accounts
+      res.status(200).json({ accounts });
+    })
+    .catch(err => {
+      console.error('Error fetching accounts:', err);
+      res.status(500).json({ message: 'Internal server error' });
+    });
+};
 
 
 
@@ -89,22 +106,19 @@ exports.createAccountForClient = async (req, res) => {
     res.status(500).json({ message: 'Internal server error' });
   }
 };
-// const mongoose = require('mongoose');
-// const Account = require('../models/account');
 
-// exports.getAccount= (req, res) => {
-//   const clientId = req.params.clientId; // Récupérer l'ID du client à partir de la requête
-  
-//   // Utiliser l'ID du client pour récupérer les informations du compte
-//   Account.findOne({ ownerId: clientId })
-//     .then(account => {
-//       if (!account) {
-//         return res.status(404).json({ message: 'Account not found' });
-//       }
-//       res.status(200).json({ account });
-//     })
-//     .catch(err => {
-//       console.error('Error fetching account:', err);
-//       res.status(500).json({ message: 'Internal server error' });
-//     });
-// };
+exports.updateAccount = (req, res) => {
+  const accountId = req.params.accountId;
+
+  Account.findByIdAndUpdate(accountId, req.body, { new: true })
+      .then(updatedAccount => {
+          if (!updatedAccount) {
+              return res.status(404).json({ message: 'Account not found' });
+          }
+          res.status(200).json({ message: 'Account updated successfully', account: updatedAccount });
+      })
+      .catch(err => {
+          console.error('Error updating account:', err);
+          res.status(500).json({ message: 'Internal server error' });
+      });
+};

@@ -11,6 +11,10 @@
           style="background-color: #ffff; color:black;font-weight: 700px;border:none">
           <i class="bi bi-plus-circle"></i>
         </button>
+        <button  [routerLink]="['/admin/dash/create-account']" class="btn btn-primary example-icon ml-auto"
+        style="background-color: #ffff; color:black;font-weight: 700px;border:none">
+        <i class="bi bi-plus-circle"></i>create bank account
+      </button>
         <button mat-icon-button class="example-icon" aria-label="Example icon-button with share icon">
           <!-- <mat-icon>share</mat-icon> -->
         </button>
@@ -41,9 +45,9 @@
                         class="btn btn-outline-secondary">
                         <i class="bi bi-chat-right-quote-fill"></i>
                       </button>
-                      <button [routerLink]="['/admin/dash/create-account']"
+                      <button [routerLink]="['/admin/dash/detail-acc', client._id]"
                       type="button" class="btn btn-outline-secondary">
-                      creer compte
+                      bank Account
                   </button>
                       <a type="button" class="btn btn-outline-secondary"
                         (click)="onDeleteClient(client._id)">

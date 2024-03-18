@@ -24,5 +24,6 @@ router.get('/nonvalidclients/',authController.isAuthenticated, protectAdmin,clie
 router.put('/suspend/:id',clientController.toggleSuspendAccount);
 router.get('/clients/:id',authController.isAuthenticated, protectAdmin,clientController.getClientById);
 router.delete('/clients/:id',authController.isAuthenticated, protectAdmin,clientController.deleteClient);
+router.put('/clients/:id', authController.isAuthenticated,clientController.updateClient);
 
 module.exports = router;

@@ -47,37 +47,20 @@ export class NonValidClientComponent implements OnInit {
     }).then((result) => {
       if (result.isConfirmed) {
         client.estValide = true;
-        this.clientService.updateClient(client._id, client).subscribe(
-          () => {
-            console.log('Client validated:', client);
-            this.clients = this.clients.filter((s) => s._id !== client._id);
-            // this.updatePagedClients();
-          },
-          (error: any) => {
-            console.error(error);
-            this.errorMessage = error.message;
-          }
-        );
+        this.clientService.updateClient(client._id, client)
+          .subscribe(
+            () => {
+              console.log('Client validated:', client);
+              this.clients = this.clients.filter((s) => s._id !== client._id);
+            },
+            (error: any) => {
+              console.error(error);
+              this.errorMessage = error.message;
+            }
+          );
       }
     });
   }
-
-  // updatePagedClients(): void {
-  //   const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-  //   const endIndex = startIndex + this.paginator.pageSize;
-  //   this.pagedClients = this.clients.slice(startIndex, endIndex);
-  // }
-
-  // onPageChange(event: PageEvent): void {
-  //   this.currentPageSize = event.pageSize;
-  //   this.paginator.pageIndex = event.pageIndex; // Update the current page index
-  //   this.updatePagedClients();
-  // }
-
-  // ngAfterViewInit(): void {
-  //   this.paginator.page.subscribe(() => {
-  //     // this.updatePagedClients();
-  //   });
-  // }
+  
 }
 

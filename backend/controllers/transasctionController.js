@@ -1,25 +1,5 @@
-
 const Account = require('../models/account');
 const Transaction = require('../models/transaction');
-exports.effectuerVirement = async (req, res) => {
-    try {
-        const { compteSourceId, compteDestinationId, montant } = req.body;
-
-        // Vérifier que tous les champs requis sont fournis
-        if (!compteSourceId || !compteDestinationId || !montant) {
-            return res.status(400).json({ message: 'Tous les champs sont requis' });
-        }
-
-        // Effectuer le virement
-        const nouvelleTransaction = await effectuerVirement(compteSourceId, compteDestinationId, montant);
-
-        // Envoyer une réponse avec la transaction créée
-        return res.status(200).json({ transaction: nouvelleTransaction });
-    } catch (error) {
-        console.error('Erreur lors de l\'exécution du virement :', error);
-        return res.status(500).json({ message: 'Erreur lors de l\'exécution du virement' });
-    }
-};
 
 // Fonction pour effectuer un virement
 async function effectuerVirement(compteSourceId, compteDestinationId, montant) {
@@ -62,3 +42,57 @@ async function effectuerVirement(compteSourceId, compteDestinationId, montant) {
         throw error; // Propager l'erreur pour être gérée plus haut dans l'application
     }
 }
+
+exports.effectuerVirement = async (req, res) => {
+    try {
+        const { compteSourceId, compteDestinationId, montant } = req.body;
+
+        // Vérifier que tous les champs requis sont fournis
+        if (!compteSourceId || !compteDestinationId || !montant) {
+            return res.status(400).json({ message: 'Tous les champs sont requis' });
+        }
+
+        // Effectuer le virement en utilisant la fonction effectuerVirement()
+        const nouvelleTransaction = await effectuerVirement(compteSourceId, compteDestinationId, montant);
+
+        // Envoyer une réponse avec la transaction créée
+        return res.status(200).json({ transaction: nouvelleTransaction });
+    } catch (error) {
+        console.error('Erreur lors de l\'exécution du virement :', error);
+        return res.status(500).json({ message: 'Erreur lors de l\'exécution du virement' });
+    }
+};
+
+
+// Fonction pour obtenir les transactions d'un client
+async function getTransactionsByClient(clientId) {
+    try {
+        // Recherchez les transactions où le client est l'expéditeur ou le destinataire
+        const transactions = await Transaction.find({ $or: [{ sender: clientId }, { receiver: clientId }] });
+        return transactions;
+    } catch (error) {
+        console.error('Erreur lors de la récupération des transactions du client :', error);
+        throw error;
+    }
+}
+
+// Contrôleur pour récupérer les transactions d'un client
+exports.getTransactionsByClient = async (req, res) => {
+    try {
+        const clientId = req.params.clientId;
+
+        // Vérifiez si l'ID du client est fourni
+        if (!clientId) {
+            return res.status(400).json({ message: 'L\'ID du client est requis' });
+        }
+
+        // Appelez la fonction pour obtenir les transactions du client
+        const transactions = await getTransactionsByClient(clientId);
+
+        // Envoyez la réponse avec les transactions trouvées
+        return res.status(200).json({ transactions });
+    } catch (error) {
+        console.error('Erreur lors de la récupération des transactions du client :', error);
+        return res.status(500).json({ message: 'Erreur lors de la récupération des transactions du client' });
+    }
+};

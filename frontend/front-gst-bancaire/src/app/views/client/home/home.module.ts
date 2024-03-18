@@ -22,6 +22,7 @@ import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { EditProfilComponent } from './edit-profil/edit-profil.component';
+import { TransactionComponent } from './transaction/transaction.component';
 
 
 @NgModule({
@@ -32,7 +33,8 @@ import { EditProfilComponent } from './edit-profil/edit-profil.component';
     PageServicesComponent,
      VirementComponent,
     DetailCompteComponent,
-    EditProfilComponent
+    EditProfilComponent,
+    TransactionComponent
     
   ],
   imports: [

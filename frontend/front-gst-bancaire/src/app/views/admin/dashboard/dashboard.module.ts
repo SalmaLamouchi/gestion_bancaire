@@ -24,6 +24,8 @@ import { ChangePwdComponent } from './change-pwd/change-pwd.component';
 import { NonValidClientComponent } from './non-valid-client/non-valid-client.component';
 import { NotificationComponent } from '../../../layouts/notification/notification.component';
 import { CreateAccountComponent } from './create-account/create-account.component';
+import { DetailAccComponent } from './detail-acc/detail-acc.component';
+import { UpdateAccountComponent } from './update-account/update-account.component';
 // import { MatPaginatorModule } from '@angular/material/paginator';
 // import { MatStepper } from '@angular/material/stepper';
 
@@ -36,6 +38,8 @@ import { CreateAccountComponent } from './create-account/create-account.componen
     ChangePwdComponent,
     NonValidClientComponent,
     CreateAccountComponent,
+    DetailAccComponent,
+    UpdateAccountComponent,
     // NotificationComponent
     // LoginAdminComponent
   ],
