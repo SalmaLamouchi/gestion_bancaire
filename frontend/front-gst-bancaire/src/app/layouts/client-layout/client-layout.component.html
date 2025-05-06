@@ -36,6 +36,7 @@
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
               <li><a routerLink="/home" class="nav-link">Home</a></li>
               <li *ngIf="verifyuser"><a  class="nav-link" (click)="logout()" >logout</a></li>
+              <li *ngIf="verifyuser"><a  class="nav-link" (click)="location()"  >location</a></li>
               <li class="has-children">
                 <a href="#about-section" class="nav-link">About Us</a>
                 <ul class="dropdown">

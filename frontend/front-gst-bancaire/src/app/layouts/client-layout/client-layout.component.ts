@@ -35,6 +35,14 @@ export class ClientLayoutComponent {
       );
     }
 
-}
+    location() {
+     
+          this.router.navigate(['/location']);    
+          }
+       
+      
+    }
+
+
 
 

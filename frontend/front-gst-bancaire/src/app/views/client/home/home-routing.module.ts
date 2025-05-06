@@ -10,6 +10,7 @@ import { ProfilComponent } from './profil/profil.component';
 import { VirementComponent } from './virement/virement.component';
 import { EditProfilComponent } from './edit-profil/edit-profil.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { BankBranchesComponent } from './bank-branches/bank-branches.component';
 // import { EditProfilComponent } from './;
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'detail-compte',component:DetailCompteComponent},
   {path:'profil',component:ProfilComponent},
   {path:'profil/edit',component:EditProfilComponent},
-  {path:'transactions',component:TransactionComponent}
+  {path:'transactions',component:TransactionComponent},
+  // {path:'location',component:BankBranchesComponent}
 ];
 
 @NgModule({

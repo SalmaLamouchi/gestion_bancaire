@@ -23,8 +23,12 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { EditProfilComponent } from './edit-profil/edit-profil.component';
 import { TransactionComponent } from './transaction/transaction.component';
+import { BankBranchesComponent } from './bank-branches/bank-branches.component';
+import { Loader } from '@googlemaps/js-api-loader';
+// import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 
-
+// import { Loader } from '@googlemaps/js-api-loader';
+//  import { GoogleMapsModule } from '@angular/google-maps';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -34,17 +38,20 @@ import { TransactionComponent } from './transaction/transaction.component';
      VirementComponent,
     DetailCompteComponent,
     EditProfilComponent,
-    TransactionComponent
+    TransactionComponent,
+    // BankBranchesComponent
     
   ],
   imports: [
     CommonModule,
     RouterModule,
-    
+    // LeafletModule,
     ReactiveFormsModule,
     FormsModule,
     HomeRoutingModule,
     // MatCommonModule,
+      //  GoogleMapsModule,
+        // Loader,
     // MatTabsModule,
     // MatPaginatorModule,
     // MatSortModule,

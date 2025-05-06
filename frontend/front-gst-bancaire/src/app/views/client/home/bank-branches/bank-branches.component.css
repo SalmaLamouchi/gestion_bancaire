@@ -1,0 +1,137 @@
+/* Base Styles */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #f5f7fa;
+}
+
+/* Background */
+.earth-background {
+  background-image: url('https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Earth_Western_Hemisphere.jpg/1920px-Earth_Western_Hemisphere.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 1rem;
+}
+
+/* Content Container */
+.content {
+  background-color: rgba(255, 255, 255, 0.98);
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+  width: 95%;
+  max-width: 1200px;
+}
+
+/* Map Container */
+.map-container {
+  margin-bottom: 2rem;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+#map {
+  width: 100%;
+  height: 60vh;
+  border: none;
+}
+
+/* Filter Section */
+.filter-container {
+  margin-bottom: 2rem;
+}
+
+.filter {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.filter label {
+  font-weight: 600;
+  color: #343a40;
+}
+
+.filter select {
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  border: 1px solid #ced4da;
+  background-color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.filter select:hover {
+  border-color: #3a86ff;
+}
+
+/* Table Section */
+.table-container {
+  overflow-x: auto;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 600px;
+}
+
+th, td {
+  padding: 1rem;
+  text-align: left;
+  border-bottom: 1px solid #e9ecef;
+}
+
+th {
+  background-color: #3a86ff;
+  color: white;
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f9fa;
+}
+
+tr:hover {
+  background-color: #e9f5ff;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .content {
+    padding: 1rem;
+  }
+  
+  #map {
+    height: 50vh;
+  }
+  
+  .filter {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .leaflet-container {
+    background-color: rgba(0, 0, 0, 0) !important;
+  }
+  th, td {
+    padding: 0.75rem;
+  }
+}

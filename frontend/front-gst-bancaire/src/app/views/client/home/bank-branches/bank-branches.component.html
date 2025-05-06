@@ -1,0 +1,39 @@
+<div class="earth-background">
+  <div class="content">
+    <div class="map-container">
+      <div id="map" style="width: 100%; height: 400px;"></div>    </div>
+      <!-- <leaflet lf-center="center" height="480px" width="640px"></leaflet> -->
+    <div class="filter-container">
+      <div class="filter">
+        <label for="type">Filtrer par type :</label>
+        <select id="type" [(ngModel)]="selectedType" (change)="onTypeChange()">
+          <option value="">Tous</option>
+          <option *ngFor="let type of types" [value]="type">{{ type }}</option>
+        </select>
+      </div>
+    </div>
+    
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Type</th>
+            <th>Adresse</th>
+            <th>Ville</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let location of paginatedLocations">
+            <td>{{ location.id }}</td>
+            <td>{{ location.name }}</td>
+            <td>{{ location.type }}</td>
+            <td>{{ location.address }}</td>
+            <td>{{ location.city }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

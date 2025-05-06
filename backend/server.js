@@ -43,7 +43,7 @@ db.once('open', () => {
 
 // creation d'un admin 
 //   async function seed() {
-//    const email = 'salmakk@gmail.com';
+//    const email = 'salma@gmail.com';
 //    const password = 'salma123';
 //    const admin = new Admin({ email, password });
 //    await admin.save();

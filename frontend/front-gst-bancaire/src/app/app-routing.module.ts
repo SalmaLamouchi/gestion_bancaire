@@ -4,6 +4,7 @@ import { ClientLayoutComponent } from './layouts/client-layout/client-layout.com
 import { AdminLayoutComponent } from './layouts/admin-layout/admin-layout.component';
 import { LoginAdminComponent } from './views/auth/login-admin/login-admin.component';
 import { WhoAreYouPageComponent } from './views/who-are-you-page/who-are-you-page.component';
+import { BankBranchesComponent } from './views/client/home/bank-branches/bank-branches.component';
 
 const routes: Routes = [
 {path:'',component:ClientLayoutComponent,children:[
@@ -12,10 +13,10 @@ const routes: Routes = [
 
 ]},
 {path:'admin',component:AdminLayoutComponent,children:[
-
   {path:'dash',loadChildren:()=>import('./views/admin/dashboard/dashboard.module').then(m=>m.DashboardModule)},
   // {path:'',component:LoginAdminComponent}
 ]},
+{path:'location',component:BankBranchesComponent},
 
 {path:'loginadmin',component:LoginAdminComponent}
 ];

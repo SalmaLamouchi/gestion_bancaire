@@ -26,21 +26,23 @@ import { PageServicesComponent } from './views/client/home/page-services/page-se
 import { HomeModule } from './views/client/home/home.module';
 import { VirementComponent } from './views/client/home/virement/virement.component';
 import { NotificationComponent } from './layouts/notification/notification.component';
+import { LocationService } from './services/location.service';
+import { BankBranchesComponent } from './views/client/home/bank-branches/bank-branches.component';
+// import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 // import { VirementComponent } from './views/client/home/virement/virement.component';
 // import { AdminListClientsComponent } from './views/admin/admin-list-clients/admin-list-clients.component';
-
+// import { GoogleMapsModule } from '@angular/google-maps';
 @NgModule({
   declarations: [
     AppComponent,
     LoginAdminComponent,
     WhoAreYouPageComponent,
-    ProfilComponent,
-    // NotificationComponent,
+    ProfilComponent ,   // NotificationComponent,
     // VirementComponent
     // AdminListClientsComponent,
     // PageServicesComponent,
     // LoginclientComponent,
-
+BankBranchesComponent
   ],
   imports: [
     CommonModule,
@@ -48,7 +50,10 @@ import { NotificationComponent } from './layouts/notification/notification.compo
     // LayoutsModule,
     RouterModule,
     FormsModule,
+    // GoogleMapsModule,
     // HomeModule,
+    // GoogleMapsModule,
+    // LeafletModule,
     ReactiveFormsModule,
      MatSnackBarModule,
     HttpClientModule,
@@ -60,7 +65,7 @@ import { NotificationComponent } from './layouts/notification/notification.compo
    
     MatStepperModule
   ],
-  providers: [],
+  providers: [LocationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
